@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
  */
 import HeaderPart from './header';
 import Footer from './footer';
+import NotFound from './not-found';
 import PostLists from './post-lists';
 import PostDetail from './post-detail';
 
@@ -19,6 +20,8 @@ function App() {
           <Route path="/" element={<PostLists />} />
           <Route path="/blog/" element={<PostLists />} />
           <Route path="/blog/:id" element={<PostDetail />} />
+          {/* 404 Catch-all Route */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
