@@ -7,15 +7,12 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
-    const [totalPages, setTotalPages] = useState(1);
-    // console.log( page );
 
     const getPosts = () => {
         fetch(`${apiUrl}wp/v2/posts?_embed`).then((response) => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            setTotalPages(response.headers.get('x-wp-totalpages'));
 
             return response.json();
 
@@ -32,15 +29,6 @@ const PostList = () => {
     }, []);
         useDocumentTitle(`Rakesh Blog`);
 
-
-    const paginationItems = () => {
-        const items = [];
-        for (let i = 1; i <= totalPages; i++) {
-            items.push(<li key={i}><span>{i}</span></li>);
-        }
-
-        return <ul className='pagination'>{items}</ul>;
-    }
     return <>
         {posts && <> <ol className='posts-list'>
             {posts.map((post) => {
@@ -56,7 +44,6 @@ const PostList = () => {
                 </li>
             })}
         </ol>
-            {posts?.length > 0 && totalPages > 0 && paginationItems()}
         </>}
     </>;
 }
