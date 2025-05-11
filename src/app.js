@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 
 /**
  * Local Import
@@ -13,7 +14,10 @@ function App() {
     <div className="App">
       <HeaderPart />
       <main>
-        <PostLists />
+        <Routes>
+          <Route path="/" element={<PostLists />} />
+          <Route path="/blog/" element={<PostLists />} />
+        </Routes>
       </main>
       <Footer />
     </div>
